@@ -33,6 +33,8 @@
     }
     // get Account
     web3.eth.defaultAccount = web3.eth.accounts[0];
+    var acccouts = web3.eth.accounts;
+    console.log(acccouts); 
     // get contract
     var CoursetroContract = web3.eth.contract([
     {
@@ -87,10 +89,16 @@
       "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
+    },
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
     }
   ]);
     
-    var Coursetro = CoursetroContract.at('0x5ebc2141c3e30c764a898fa696bc3fd5070fbdd1');
+    var Coursetro = CoursetroContract.at('0x17dc95e5759a0bbdf8d9c8a1d83db8a134570022');
     
     var instructorEvent = Coursetro.Instructor();
     instructorEvent.watch(function(error, result) {
@@ -108,7 +116,12 @@
     $("#button").click(function(){
       $("#loader").show();
       $("#instructor").hide();
-      Coursetro.setInstructor($('#name').val(), $('#age').val());
+      Coursetro.setInstructor($('#name').val(), $('#age').val(), (err, res) => {
+        if(err) {
+          $("#loader").hide();
+          console.error('oh no');
+        }
+      });
     });
     
   </script>
