@@ -38,41 +38,6 @@
     // get contract
     var CoursetroContract = web3.eth.contract([
     {
-      "constant": true,
-      "inputs": [],
-      "name": "getInstructor",
-      "outputs": [
-        {
-          "name": "",
-          "type": "string"
-        },
-        {
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "name": "name",
-          "type": "string"
-        },
-        {
-          "indexed": false,
-          "name": "age",
-          "type": "uint256"
-        }
-      ],
-      "name": "Instructor",
-      "type": "event"
-    },
-    {
       "constant": false,
       "inputs": [
         {
@@ -91,14 +56,49 @@
       "type": "function"
     },
     {
+      "constant": true,
+      "inputs": [],
+      "name": "getInstructor",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        },
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "inputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
       "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "name": "age",
+          "type": "uint256"
+        }
+      ],
+      "name": "Instructor",
+      "type": "event"
     }
   ]);
     
-    var Coursetro = CoursetroContract.at('0x17dc95e5759a0bbdf8d9c8a1d83db8a134570022');
+    var Coursetro = CoursetroContract.at('0x5af725dcdca7b4031a2ceeb9bc14593018ac4fd5');
     
     var instructorEvent = Coursetro.Instructor();
     instructorEvent.watch(function(error, result) {
