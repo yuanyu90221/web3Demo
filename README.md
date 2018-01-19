@@ -153,3 +153,19 @@ contract Coursetro {
     }
 }
 ``` 
+
+# 4 Watch Event with function
+
+```code
+ var instructEventCallback = Coursetro.Instructor(function(error, result){
+    $("#loader").hide();
+    if(!error) {
+      console.log(`watch result`);
+      console.log(result);
+      $('#instructor').html(result.args.name + ' (' + result.args.age + ' years old)');
+    } else {
+      console.error(error);
+    }
+    $("#instructor").show();
+  });
+```
