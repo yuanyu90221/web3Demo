@@ -98,21 +98,31 @@
     }
   ]);
     
-    var Coursetro = CoursetroContract.at('0x5af725dcdca7b4031a2ceeb9bc14593018ac4fd5');
+    var Coursetro = CoursetroContract.at('0xd2e013b9c57b2c2b8b006e2783d0209c4d08c8ed');
     
-    var instructorEvent = Coursetro.Instructor();
-    instructorEvent.watch(function(error, result) {
-      
+    var instructEventCallback = Coursetro.Instructor(function(error, result){
+      $("#loader").hide();
       if(!error) {
-        $("#loader").hide();
+        console.log(`watch result`);
+        console.log(result);
         $('#instructor').html(result.args.name + ' (' + result.args.age + ' years old)');
-      }
-      else {
-        $("#loader").hide();
+      } else {
         console.error(error);
       }
       $("#instructor").show();
     });
+
+    // var instructorEvent = Coursetro.Instructor();
+    // instructorEvent.watch(function(error, result) {
+    //     $("#loader").hide();  
+    //   if(!error) {
+    //     $('#instructor').html(result.args.name + ' (' + result.args.age + ' years old)');
+    //   }
+    //   else {
+    //     console.error(error);
+    //   }
+    //   $("#instructor").show();
+    // });
     $("#button").click(function(){
       $("#loader").show();
       $("#instructor").hide();
