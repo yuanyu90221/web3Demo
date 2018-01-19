@@ -154,7 +154,7 @@ contract Coursetro {
 }
 ``` 
 
-# 4 Watch Event with function
+# 5 Watch Event with function
 
 ```code
  var instructEventCallback = Coursetro.Instructor(function(error, result){
@@ -168,4 +168,11 @@ contract Coursetro {
     }
     $("#instructor").show();
   });
+```
+
+# 6 install testrpc and web3
+
+```code
+  npm install -S web3
+  npm install -g testrpc
 ```
