@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>PoaDemo</title>
+  <script src="./node_modules/web3/dist/web3.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Registry Contract</h1>
+    <label for="username" class="col-lg-2 control-label">Username:</label>
+    <input type="text" id="username">
+    <label for="fee" class="col-lg-2 control-label">initialFee:</label>
+    <input type="text" id="fee"> 
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script>
+    // set up web3 
+    if (typeof web3 !== 'undefined') {
+      web3 = new Web3(web3.currentProvider);
+    }
+    else {
+      web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8540"));
+    }
+    console.log(web3.currentProvider);
+    console.log(web3.eth.accounts);
+    // get Account 
+    web3.eth.defaultAccount = "0x00Bd138aBD70e2F00903268F3Db08f2D25677C9e";
+    var accounts = web3.eth.accounts;
+    console.log(accounts);
+    // get contract
+    var RegistryConrtract = web3.eth.contract([
+      {
+        "constant":false,"inputs": [
+          {
+            "name":"amount",
+            "type":"uint256"
+          }
+        ],
+        "name":"withdraw",
+        "outputs":[],
+        "payable":false,
+        "stateMutability":"nonpayable",
+        "type":"function"
+      },
+      {
+        "constant":false,
+        "inputs": [
+          {
+            "name":"key",
+            "type":"string"
+          },
+          {
+            "name":"value",
+            "type":"string"
+          }
+        ],
+        "name":"register",
+        "outputs": [],
+        "payable":true,
+        "stateMutability":"payable",
+        "type":"function"
+      },
+      {
+        "constant":true,
+        "inputs": [
+          {
+            "name":"key",
+            "type":"string"
+          }
+        ],
+        "name":"query",
+        "outputs": [
+          {
+            "name":"",
+            "type":"string"
+          }
+        ],
+        "payable":false,
+        "stateMutability":"view",
+        "type":"function"
+      },
+      {
+        "constant":true,
+        "inputs": [],
+        "name":"fee",
+        "outputs": [
+          {
+            "name":"",
+            "type":"uint256"
+          }
+        ],
+        "payable":false,
+        "stateMutability":"view",
+        "type":"function"
+      },
+      {
+        "constant":false,
+        "inputs": [
+          {
+            "name":"key",
+            "type":"string"
+          },
+          {
+            "name":"to",
+            "type":"address"
+          }
+        ],
+        "name":"transfer",
+        "outputs": [],
+        "payable":false,
+        "stateMutability":"nonpayable",
+        "type":"function"
+      },
+      {
+        "inputs": [
+          {
+            "name":"initialFee",
+            "type":"uint256"
+          }
+        ],
+        "payable":false,
+        "stateMutability":"nonpayable",
+        "type":"constructor"
+      }
+    ]);
+
+    var Registry = RegistryConrtract.at('0xEf6c9341e27C23E205f5Da6c3e80F0b38603b1a8');
+    console.log(Registry);
+  </script>
+</body>
+</html>
