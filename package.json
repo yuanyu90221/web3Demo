@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "lite-server": "^2.6.1",
-    "solc": "^0.4.19",
+    "solc": "^0.8.19",
     "web3": "github:ethereum/web3.js"
   }
 }
